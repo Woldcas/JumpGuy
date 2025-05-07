@@ -105,13 +105,13 @@ public class Trap_FallingPlatform : MonoBehaviour
         anim.SetTrigger("deactivate");
         canMove = false;
 
-        rb.isKinematic = false;
+        rb.bodyType = RigidbodyType2D.Dynamic;
         rb.gravityScale = 3.5f;
-        rb.drag = .5f;
+        rb.linearDamping = .5f;
         foreach (BoxCollider2D col in colliders)
         {
             col.enabled = false;
         }
     }
-
+ 
 }
