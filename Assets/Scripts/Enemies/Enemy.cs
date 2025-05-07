@@ -15,13 +15,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected float moveSpeed = 2f;
     [SerializeField] protected float idleDuration = 1.5f;
     protected float idleTimer;
-    protected bool canMove;
+    protected bool canMove = true;
 
 
     [Header("Death Detalis")]
-    [SerializeField] private float deathImpactSpeed = 5;
-    [SerializeField] private float deathRotationSpeed = 150;
-    private int deathRotationDirection = 1;
+    [SerializeField] protected float deathImpactSpeed = 5;
+    [SerializeField] protected float deathRotationSpeed = 150;
+    protected int deathRotationDirection = 1;
     protected bool isDead;
 
     [Header("Basic Collision")]
@@ -87,6 +87,8 @@ public class Enemy : MonoBehaviour
 
         if (Random.Range(0, 100) < 50)
             deathRotationDirection = deathRotationDirection * -1;
+
+        Destroy(gameObject, 10);
     }
 
     private void HandleDeathRotation()
