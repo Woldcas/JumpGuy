@@ -13,7 +13,7 @@ public class FinishLine : MonoBehaviour
         if (player != null)
         {
             anim.SetTrigger("activate");
-            GameManager.instance.LoadTheEndScene();
+            GameManager.instance.LevelFinished();
         }
 
     }
