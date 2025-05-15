@@ -7,6 +7,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    [Header("Level Managment")]
+    [SerializeField] private int currentLevelIndex;
+    private int nextLevelIndex;
+
     [Header("Player")]
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private Transform respawnPoint;
@@ -34,6 +38,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        currentLevelIndex = SceneManager.GetActiveScene().buildIndex;
+        nextLevelIndex = currentLevelIndex + 1;
         CollectFruitsInfo();
     }
 
@@ -69,10 +75,40 @@ public class GameManager : MonoBehaviour
         GameObject newObject = Instantiate(prefab, newPosition, Quaternion.identity);
     }
 
-    private void LoadTheEndScene() => SceneManager.LoadScene("TheEnd");
-
     public void LevelFinished()
     {
-        UI_InGame.instance.fadeEffect.ScreenFade(1, 1.5f, LoadTheEndScene);
+        SaveLevelProgression();
+        LoadNextScene();
+    }
+
+    private void SaveLevelProgression()
+    {
+        PlayerPrefs.SetInt("Level" + nextLevelIndex + "Unlocked", 1);
+
+        if (NoMoreLevels() == false)
+            PlayerPrefs.SetInt("ContinueLevelNumber", nextLevelIndex);
+    }
+
+    private void LoadTheEndScene() => SceneManager.LoadScene("TheEnd");
+    private void LoadNextLevel()
+    {
+        SceneManager.LoadScene("Level_" + nextLevelIndex);
+    }
+    private void LoadNextScene()
+    {
+        UI_FadeEffect fadeEffect = UI_InGame.instance.fadeEffect;
+
+        if (NoMoreLevels())
+            fadeEffect.ScreenFade(1, 1.5f, LoadTheEndScene);
+        else
+            fadeEffect.ScreenFade(1, 1.5f, LoadNextLevel);
+    }
+
+    private bool NoMoreLevels()
+    {
+        int lastLevelIndex = SceneManager.sceneCountInBuildSettings - 2; //I use number 2 because we have main menu and the end scene in the build settings.
+        bool noMoreLevels = currentLevelIndex == lastLevelIndex;
+
+        return noMoreLevels;
     }
 }
