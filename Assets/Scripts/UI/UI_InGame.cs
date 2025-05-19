@@ -1,9 +1,13 @@
+using TMPro;
 using UnityEngine;
 
 public class UI_InGame : MonoBehaviour
 {
     public static UI_InGame instance;
-    public UI_FadeEffect fadeEffect;
+    public UI_FadeEffect fadeEffect { get; private set; } //read only
+
+    [SerializeField] private TextMeshProUGUI timerText;
+    [SerializeField] private TextMeshProUGUI fruitText;
 
     private void Awake()
     {
@@ -15,5 +19,15 @@ public class UI_InGame : MonoBehaviour
     private void Start()
     {
         fadeEffect.ScreenFade(0, 1);
+    }
+
+    public void UpdateFruitUI(int collectedFruits, int totalFruits)
+    {
+        fruitText.text = collectedFruits + "/" + totalFruits;
+    }
+
+    public void UpdateTimerUI(float timer)
+    {
+       timerText.text = timer.ToString("00") + " s";
     }
 }

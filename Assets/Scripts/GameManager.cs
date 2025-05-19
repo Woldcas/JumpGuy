@@ -7,7 +7,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    private UI_InGame inGameUI;
+
     [Header("Level Managment")]
+    [SerializeField] private float levelTimer;
     [SerializeField] private int currentLevelIndex;
     private int nextLevelIndex;
 
@@ -38,15 +41,29 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        inGameUI = UI_InGame.instance;
+        
         currentLevelIndex = SceneManager.GetActiveScene().buildIndex;
         nextLevelIndex = currentLevelIndex + 1;
+
         CollectFruitsInfo();
+    }
+
+    private void Update()
+    {
+        levelTimer += Time.deltaTime;
+
+        inGameUI.UpdateTimerUI(levelTimer);
     }
 
     private void CollectFruitsInfo()
     {
         Fruit[] allFruits = FindObjectsByType<Fruit>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
         totalFruits = allFruits.Length;
+
+        inGameUI.UpdateFruitUI(fruitsCollected, totalFruits);
+
+        PlayerPrefs.SetInt("Level" + currentLevelIndex + "TotalFruits", totalFruits);
     }
 
     public void UpdateRespawnPosition(Transform newRespawnPoint) => respawnPoint = newRespawnPoint;
@@ -60,7 +77,11 @@ public class GameManager : MonoBehaviour
         player = newPlayer.GetComponent<Player>();
     }
 
-    public void AddFruit() => fruitsCollected++;
+    public void AddFruit()
+    {
+        fruitsCollected++;
+        inGameUI.UpdateFruitUI(fruitsCollected, totalFruits);
+    }
     public bool FruitsHaveRandomLook() => fruitsAreRandom;
 
     public void CreateObject(GameObject prefab, Transform target, float delay = 0)
@@ -78,7 +99,29 @@ public class GameManager : MonoBehaviour
     public void LevelFinished()
     {
         SaveLevelProgression();
+        SaveBestTime();
+        SaveFruitsInfo();
+
         LoadNextScene();
+    }
+
+    private void SaveFruitsInfo()
+    {
+        int fruitsCollectedBefore = PlayerPrefs.GetInt("Level" + currentLevelIndex + "FruitsCollected");
+
+        if (fruitsCollectedBefore < fruitsCollected)
+            PlayerPrefs.SetInt("Level" + currentLevelIndex + "FruitsCollected", fruitsCollected);
+            
+        int totalFruitsInBank = PlayerPrefs.GetInt("TotalFruitsAmount");
+        PlayerPrefs.SetInt("TotalFruitsAmount", totalFruitsInBank + fruitsCollected);   
+    }
+
+    private void SaveBestTime()
+    {
+        float lastTime = PlayerPrefs.GetFloat("Level" + currentLevelIndex + "BestTime", 99);
+
+        if(levelTimer < lastTime)
+            PlayerPrefs.SetFloat("Level" + currentLevelIndex + "BestTime", levelTimer);
     }
 
     private void SaveLevelProgression()
