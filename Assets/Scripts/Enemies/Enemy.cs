@@ -5,7 +5,7 @@ using UnityEngine.Windows;
 
 public class Enemy : MonoBehaviour
 {
-    private SpriteRenderer sr => GetComponent<SpriteRenderer>();
+    protected SpriteRenderer sr => GetComponent<SpriteRenderer>();
     protected Transform player;
     protected Animator anim;
     protected Rigidbody2D rb;
@@ -77,11 +77,12 @@ public class Enemy : MonoBehaviour
 
     public virtual void Die()
     {
-        foreach (var collider in colliders)
-        {
-            collider.enabled = false;
-        }
-              
+        if (rb.bodyType == RigidbodyType2D.Kinematic)
+            rb.bodyType = RigidbodyType2D.Dynamic;
+
+        EnableColliders(false);
+
+
         anim.SetTrigger("hit");
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, deathImpactSpeed);
         isDead = true;
@@ -91,6 +92,14 @@ public class Enemy : MonoBehaviour
 
         PlayerManager.OnPlayerRespawn -= UpdatePlayerReference;
         Destroy(gameObject, 10);
+    }
+
+    protected void EnableColliders(bool enable)
+    {
+        foreach (var collider in colliders)
+        {
+            collider.enabled = enable;
+        }
     }
 
     private void HandleDeathRotation()

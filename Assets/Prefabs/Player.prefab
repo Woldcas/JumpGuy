@@ -256,7 +256,7 @@ MonoBehaviour:
   enemyCheckRadius: 0.5
   whatIsEnemy:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 320
   animators:
   - {fileID: 22100000, guid: f18235faf7024854297dd42d8d1d058c, type: 2}
   - {fileID: 22100000, guid: e2f2b76ab19d3f542a168342c4917bb3, type: 2}
