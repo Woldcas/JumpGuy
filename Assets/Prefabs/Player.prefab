@@ -262,6 +262,7 @@ MonoBehaviour:
   - {fileID: 22100000, guid: e2f2b76ab19d3f542a168342c4917bb3, type: 2}
   - {fileID: 22100000, guid: ccd3cb11b9ea5e84692c61f0d403b983, type: 2}
   - {fileID: 22100000, guid: d7407216df7fc1b45a822e48f814f82f, type: 2}
+  - {fileID: 22100000, guid: 61ed3b54ab3ab5245a1350e5b47315f8, type: 2}
   deathVfx: {fileID: 7826017413995008453, guid: 8e4547052c82b4b42a88474275ee9b8f, type: 3}
   dustFx: {fileID: 7548150704628792978}
   skinId: 0

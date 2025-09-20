@@ -52,6 +52,8 @@ public class Fruit : MonoBehaviour
             Destroy(gameObject);
 
             GameObject newFX = Instantiate(pickupVfx, transform.position, Quaternion.identity);
+
+            Destroy(newFX, .5f);
         }
 
     }

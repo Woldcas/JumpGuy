@@ -27,6 +27,25 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!1107 &-7336749763694348487
+AnimatorStateMachine:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TV Head
+  m_ChildStates: []
+  m_ChildStateMachines: []
+  m_AnyStateTransitions: []
+  m_EntryTransitions: []
+  m_StateMachineTransitions: {}
+  m_StateMachineBehaviours: []
+  m_AnyStatePosition: {x: 50, y: 20, z: 0}
+  m_EntryPosition: {x: 50, y: 120, z: 0}
+  m_ExitPosition: {x: 800, y: 120, z: 0}
+  m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
+  m_DefaultState: {fileID: 0}
 --- !u!1107 &-6742704143098566371
 AnimatorStateMachine:
   serializedVersion: 6
@@ -184,6 +203,24 @@ AnimatorController:
     - serializedVersion: 2
       m_State: {fileID: 6779029054618881689}
       m_Motion: {fileID: 7400000, guid: 991679677ad5d2f4c9046b0121007c98, type: 2}
+    m_Behaviours: []
+    m_BlendingMode: 0
+    m_SyncedLayerIndex: 0
+    m_DefaultWeight: 0
+    m_IKPass: 0
+    m_SyncedLayerAffectsTiming: 0
+    m_Controller: {fileID: 9100000}
+  - serializedVersion: 5
+    m_Name: TV Head
+    m_StateMachine: {fileID: -7336749763694348487}
+    m_Mask: {fileID: 0}
+    m_Motions:
+    - serializedVersion: 2
+      m_State: {fileID: -8334995774785811344}
+      m_Motion: {fileID: 7400000, guid: 10b88c8d276111a4196cbe838dcce89e, type: 2}
+    - serializedVersion: 2
+      m_State: {fileID: 6779029054618881689}
+      m_Motion: {fileID: 7400000, guid: 099b4a25aeb8ad2468eeaf34e5e9f7a8, type: 2}
     m_Behaviours: []
     m_BlendingMode: 0
     m_SyncedLayerIndex: 0

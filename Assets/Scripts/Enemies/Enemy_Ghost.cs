@@ -90,4 +90,9 @@ public class Enemy_Ghost : Enemy
         base.Die();
         canMove = false;
     }
+
+    protected override void HandleAnimator()
+    {
+        //
+    }
 }

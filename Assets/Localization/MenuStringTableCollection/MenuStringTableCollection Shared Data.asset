@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: MenuStringTableCollection Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: MenuStringTableCollection
+  m_TableCollectionNameGuidString: 6da055530ec47c4489dc4c52720d12a7
+  m_Entries:
+  - m_Id: 126217498624
+    m_Key: Key_NewGame
+    m_Metadata:
+      m_Items: []
+  - m_Id: 340651290624
+    m_Key: Key_Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 512718417920
+    m_Key: Key_Continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2364545576960
+    m_Key: Key_Easy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2377917018112
+    m_Key: Key_Normal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2410938773504
+    m_Key: Key_Hard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439946579968
+    m_Key: Key_Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3832304513024
+    m_Key: Key_Select
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 3137878766693646336
+  references:
+    version: 2
+    RefIds:
+    - rid: 3137878766693646336
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1754394433512
